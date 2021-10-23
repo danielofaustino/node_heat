@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import { middlewareError } from './middleware/middlewareError';
 import http from 'http';
 import cors from 'cors';
 
@@ -25,6 +26,8 @@ io.on('connection', (socket) => {
 app.use(express.json());
 
 app.use(router);
+
+app.use(middlewareError);
 
 app.get('/github', (req, res) => {
   res.redirect(
